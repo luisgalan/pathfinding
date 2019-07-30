@@ -8,7 +8,7 @@ async function bfs() {
     while (!q.empty()) {
         let cur = q.pop();
         await sleep(10);
-        gridElmnts[cur.toInt()].setAttribute('color', 'visited');
+        gridElmnts[cur.toInt()].setAttribute('color', 'explored');
 
         if (cur.equals(goalPos)) {
             break;
@@ -18,6 +18,7 @@ async function bfs() {
         for (let i = 0; i < n.length; i++) {
             if (visited[n[i].toInt()]) continue;
             if (grid[n[i].toInt()]) continue;
+            gridElmnts[n[i].toInt()].setAttribute('color', 'visited');
             visited[n[i].toInt()] = true;
             cameFrom[n[i].toInt()] = cur.toInt();
             q.push(n[i]);

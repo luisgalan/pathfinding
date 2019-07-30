@@ -9,7 +9,7 @@ async function astar() {
     while (!q.empty()) {
         let cur = q.pop();
         await sleep(10);
-        gridElmnts[cur.toInt()].setAttribute('color', 'visited');
+        gridElmnts[cur.toInt()].setAttribute('color', 'explored');
 
         if (cur.equals(goalPos)) {
             break;
@@ -25,6 +25,7 @@ async function astar() {
             if (grid[intPos]) {
                 continue;
             }
+            gridElmnts[intPos].setAttribute('color', 'visited');
             dist[intPos] = tentativeDist;
             cameFrom[intPos] = cur.toInt();
             q.push(n[i].pos, dist[intPos] + euclidDist(n[i].pos, goalPos));

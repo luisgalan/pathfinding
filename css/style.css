@@ -36,6 +36,10 @@ body {
 }
 
 .grid-item[color="visited"] {
+    background-color: rgb(255, 194, 190);
+}
+
+.grid-item[color="explored"] {
     background-color: rgb(255, 219, 153);
 }
 

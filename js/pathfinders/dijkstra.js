@@ -8,7 +8,7 @@ async function dijkstra() {
     while (!q.empty()) {
         let cur = q.pop();
         await sleep(10);
-        gridElmnts[cur.toInt()].setAttribute('color', 'visited');
+        gridElmnts[cur.toInt()].setAttribute('color', 'explored');
 
         if (cur.equals(goalPos)) {
             break;
@@ -23,6 +23,7 @@ async function dijkstra() {
             if (grid[intPos]) {
                 continue;
             }
+            gridElmnts[intPos].setAttribute('color', 'visited');
             dist[intPos] = n[i].dist + dist[cur.toInt()];
             cameFrom[intPos] = cur.toInt();
             q.push(n[i].pos, dist[intPos]);
