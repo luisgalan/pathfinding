@@ -68,12 +68,11 @@ let jps = {
 
     run: async function () {
         pathfind.begin();
-        let dist = Array(grid.width * grid.height).fill(null);
+        let dist = Array(grid.width * grid.height);
         let cameFrom = {};
         let q = new MinHeap();
         q.push(grid.startPos, pathfind.euclidDist(grid.startPos, grid.goalPos));
         dist[grid.startPos.toInt()] = 0;
-
 
         while (!q.empty()) {
             let cur = q.pop();

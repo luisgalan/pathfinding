@@ -1,7 +1,7 @@
 let astar = {
     run: async function () {
         pathfind.begin();
-        let dist = Array(grid.width * grid.height).fill(null);
+        let dist = Array(grid.width * grid.height);
         let cameFrom = {};
         let q = new MinHeap();
         q.push(grid.startPos, pathfind.euclidDist(grid.startPos, grid.goalPos));
