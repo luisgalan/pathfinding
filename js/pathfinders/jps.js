@@ -2,14 +2,6 @@
 // Online graph pruning for pathfinding on grid maps.
 // http://users.cecs.anu.edu.au/~dharabor/data/papers/harabor-grastien-aaai11.pdf
 
-
-function walkable(pos) {
-    if (pos.i < 0 || pos.i >= height) return false;
-    if (pos.j < 0 || pos.j >= width) return false;
-    if (grid[pos.toInt()]) return false;
-    return true;
-}
-
 async function jump(node, parent) {
     if (!walkable(node.pos)) {
         return null;

@@ -11,16 +11,18 @@ function sleep(millis) {
     return new Promise(resolve => setTimeout(resolve, millis));
 }
 
+function walkable(pos) {
+    if (pos.i < 0 || pos.i >= height) return false;
+    if (pos.j < 0 || pos.j >= width) return false;
+    if (grid[pos.toInt()]) return false;
+    return true;
+}
+
 function neighbors(pos) {
     const deltas = [new Vec(-1, 0), new Vec(0, 1), new Vec(1, 0), new Vec(0, -1)];
     let out = [];
     for (let i = 0; i < deltas.length; i++) {
-        if (pos.i + deltas[i].i < 0) continue;
-        if (pos.i + deltas[i].i >= height) continue;
-
-        if (pos.j + deltas[i].j < 0) continue;
-        if (pos.j + deltas[i].j >= width) continue;
-
+        if (!walkable(Vec.add(pos, deltas[i]))) continue;
         out.push(Vec.add(pos, deltas[i]));
     }
     return out;
@@ -32,12 +34,7 @@ function neighborsDiag(pos) {
     for (let i = -1; i <= 1; i++) {
         for (let j = -1; j <= 1; j++) {
             if (i == 0 && j == 0) continue;
-
-            if (pos.i + i < 0) continue;
-            if (pos.i + i >= height) continue;
-
-            if (pos.j + j < 0) continue;
-            if (pos.j + j >= width) continue;
+            if (!walkable(new Vec(pos.i + i, pos.j + j))) continue;
 
             let dist = 1;
             if (Math.abs(i) + Math.abs(j) == 2) {

@@ -22,9 +22,6 @@ async function astar() {
             if (dist[intPos] != null && tentativeDist >= dist[intPos]) {
                 continue;
             }
-            if (grid[intPos]) {
-                continue;
-            }
             gridElmnts[intPos].setAttribute('color', 'visited');
             dist[intPos] = tentativeDist;
             cameFrom[intPos] = cur.toInt();

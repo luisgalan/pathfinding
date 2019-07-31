@@ -20,9 +20,6 @@ async function dijkstra() {
             if (dist[intPos] != null) {
                 continue;
             }
-            if (grid[intPos]) {
-                continue;
-            }
             gridElmnts[intPos].setAttribute('color', 'visited');
             dist[intPos] = n[i].dist + dist[cur.toInt()];
             cameFrom[intPos] = cur.toInt();
