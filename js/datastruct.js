@@ -19,6 +19,10 @@ class Vec {
     static add(a, b) {
         return new Vec(a.i + b.i, a.j + b.j);
     }
+
+    static sub(a, b) {
+        return new Vec(a.i - b.i, a.j - b.j);
+    }
 }
 
 class Queue {
