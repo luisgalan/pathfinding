@@ -1,63 +1,70 @@
-function gridClick(elmnt, pos, drawmode) {
-    grid[pos] = drawmode;
-    elmnt.setAttribute('status', (grid[pos]) ? 'wall' : 'blank');
-}
+let grid = {
+    click: function (elmnt, pos, drawmode) {
+        grid.grid[pos] = drawmode;
+        elmnt.setAttribute('status', (grid.grid[pos]) ? 'wall' : 'blank');
+    },
 
-function clearColors() {
-    for (let i = 0; i < gridElmnts.length; i++) {
-        gridElmnts[i].setAttribute('color', 'blank');
-    }
-}
+    clearColors: function () {
+        for (let i = 0; i < grid.gridElmnts.length; i++) {
+            grid.gridElmnts[i].setAttribute('color', 'blank');
+        }
+    },
 
-function setMode(value) {
-    mode = value;
-    for (let i = 0; i < gridElmnts.length; i++) {
-        gridElmnts[i].setAttribute('mode', value);
-    }
-}
+    setMode: function (value) {
+        grid.mode = value;
+        for (let i = 0; i < grid.gridElmnts.length; i++) {
+            grid.gridElmnts[i].setAttribute('mode', value);
+        }
+    },
 
-const width = 32;
-const height = 15;
-const startPos = new Vec(height / 2, 2);
-const goalPos = new Vec(height / 2, width - 3);
+    setColor: function (pos, color) {
+        grid.gridElmnts[pos.toInt()].setAttribute('color', color);
+    },
 
-let grid = [];
-let gridElmnts = [];
-let drawmode = false;
-let gridElmnt = document.getElementsByClassName('grid-container')[0];
-let mode = 'edit';
+    setDimensions: function (width, height) {
+        grid.width = width;
+        grid.height = height;
+        document.body.style.setProperty('--grid-width', grid.width);
+        grid.startPos = new Vec(height / 2, 2);
+        grid.goalPos = new Vec(this.height / 2, this.width - 3);
+    },
 
+    grid: [],
+    gridElmnts: [],
+    drawmode: false,
+    gridElmnt: document.getElementsByClassName('grid-container')[0],
+    mode: 'edit',
+};
 
-document.body.style.setProperty('--grid-width', width);
-setMode(mode);
-for (let i = 0; i < width * height; i++) {
+grid.setDimensions(32, 15);
+grid.setMode(grid.mode);
+for (let i = 0; i < grid.width * grid.height; i++) {
     let elmnt = document.createElement('div')
     elmnt.className = 'grid-item';
     elmnt.setAttribute('color', 'blank');
     elmnt.setAttribute('mode', 'edit');
-    gridElmnt.appendChild(elmnt);
-    gridElmnts.push(elmnt);
+    grid.gridElmnt.appendChild(elmnt);
+    grid.gridElmnts.push(elmnt);
 
-    if (i == startPos.toInt()) {
+    if (i == grid.startPos.toInt()) {
         elmnt.setAttribute('status', 'start');
         continue;
-    } else if (i == goalPos.toInt()) {
+    } else if (i == grid.goalPos.toInt()) {
         elmnt.setAttribute('status', 'goal');
         continue;
     }
 
     elmnt.setAttribute('status', 'blank');
     elmnt.addEventListener('mousedown', () => {
-        if (mode != 'edit') return;
-        drawmode = !grid[i];
-        gridClick(elmnt, i, drawmode);
+        if (grid.mode != 'edit') return;
+        grid.drawmode = !grid.grid[i];
+        grid.click(elmnt, i, grid.drawmode);
     });
     elmnt.addEventListener('mouseenter', (event) => {
-        if (mode != 'edit') return;
+        if (grid.mode != 'edit') return;
         if (event.buttons == 1) {
-            gridClick(elmnt, i, drawmode);
+            grid.click(elmnt, i, grid.drawmode);
         }
     });
-    grid.push(false);
+    grid.grid.push(false);
 }
-

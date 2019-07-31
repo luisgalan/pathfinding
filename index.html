@@ -12,11 +12,11 @@
 
 <body>
     <div class="grid-container" ondragstart="return false;" ondrop="return false;"></div>
-    <button onclick="if (mode == 'pathfind') return; setMode('edit'); clearColors()">Edit</button>
-    <button onclick="if (mode == 'pathfind') return; bfs()">Breadth First Search</button>
-    <button onclick="if (mode == 'pathfind') return; dijkstra()">Dijkstra's Algorithm</button>
-    <button onclick="if (mode == 'pathfind') return; astar()">A* Search</button>
-    <button onclick="if (mode == 'pathfind') return; jps()">Jump Point Search</button>
+    <button onclick="if (grid.mode == 'pathfind') return; grid.setMode('edit'); grid.clearColors()">Edit</button>
+    <button onclick="if (grid.mode == 'pathfind') return; bfs.run()">Breadth First Search</button>
+    <button onclick="if (grid.mode == 'pathfind') return; dijkstra.run()">Dijkstra's Algorithm</button>
+    <button onclick="if (grid.mode == 'pathfind') return; astar.run()">A* Search</button>
+    <button onclick="if (grid.mode == 'pathfind') return; jps.run()">Jump Point Search</button>
     <script src="js/grid.js"></script>
 </body>
 
