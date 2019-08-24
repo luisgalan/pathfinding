@@ -9,11 +9,11 @@ class Vec {
     }
 
     toInt() {
-        return this.i * width + this.j;
+        return this.i * grid.width + this.j;
     }
 
     static fromInt(p) {
-        return new Vec(p / width, p % width);
+        return new Vec(p / grid.width, p % grid.width);
     }
 
     static add(a, b) {
