@@ -26,11 +26,13 @@ class Vec {
 }
 
 class Queue {
-    static LinkedNode = class {
-        constructor(value, parent, child) {
-            this.value = value;
-            this.parent = parent;
-            this.child = child;
+    static get LinkedNode() {
+        return class {
+            constructor(value, parent, child) {
+                this.value = value;
+                this.parent = parent;
+                this.child = child;
+            }
         }
     }
 
@@ -65,10 +67,12 @@ class Queue {
 }
 
 class MinHeap {
-    static Item = class {
-        constructor(value, cost) {
-            this.value = value;
-            this.cost = cost;
+    static get Item() {
+        return class {
+            constructor(value, cost) {
+                this.value = value;
+                this.cost = cost;
+            }
         }
     }
 
