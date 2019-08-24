@@ -26,9 +26,9 @@ let jps = {
             }
 
             let res = await jps.jump(node, Vec.sub(node.pos, h));
-            if (res != null) return res;
+            if (res != null) return node;
             res = await jps.jump(node, Vec.sub(node.pos, v));
-            if (res != null) return res;
+            if (res != null) return node;
             return await jps.jump({ pos: Vec.add(node.pos, delta), dist: node.dist + Math.SQRT2 }, node.pos);
         } else {
             // horizontal / vertical
